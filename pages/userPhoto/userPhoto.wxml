@@ -1,0 +1,33 @@
+<!--pages/userPhoto/userPhoto.wxml-->
+<view class="{{ isiPhoneX ? 'isIPx' : '' }}">
+<image class='background' src="../../status/image/bg.png" mode="aspectFill"></image>
+  <view class="hearder">
+    <image class="hearder_logo" src="../../status/image/logo.png" mode="aspectFill"></image>
+    <text class="hearder_title">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</text>
+    <view class="hearder-mainView">
+      <image wx:if="{{!hasUserInfo}}" bindtap="tapSelectUserClick" class="add-photo" src="../../status/image/adduser.png"></image>
+      <block wx:else>
+          <canvas canvas-id="getImg"></canvas>
+          <image  wx:if="{{!new_showuserImage}}" class="user-photo" src="{{userImage}}" mode="scaleToFill"></image>
+          <block  wx:else>
+           <image  class="user-photo" src="{{new_userImage}}" mode="scaleToFill"></image>
+          </block>
+      </block>
+    </view>
+    <view class="bjphoto_view">
+      <scroll-view scroll-x="true" class="photo_bj" >
+       <view style='display: inline-block;' wx:for='{{photo_bj_num}}' wx:key='{{item}}' wx:for-index='idx'>
+            <image class="photo_bj_img" src='{{item}}' bindtap='bigimg'mode="scaleToFill" data-item="{{idx}}"></image>
+            <i class='iconfont icon-ai54' bindtap='delimg' ></i>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="hearder-button">
+        <button size="mini" type="primary" bindtap="editClick">重置</button>
+        <button size="mini" type="primary" bindtap="saveloadFile">保存头像</button>
+      </view>
+  </view>
+  <view class="footer">
+    <text>活动说明</text>
+  </view>
+</view>
